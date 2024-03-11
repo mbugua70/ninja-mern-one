@@ -21,10 +21,13 @@ mongoose.connect(MONGODB_STRING)
 .catch(err=> console.log(err))
 
 // middleware
+app.use(express.json());
 app.use((req, res, next) => {
-  console.log(req.path, req.method)
-  next()
-})
+  console.log(req.path, req.method);
+  next();
+});
+app.use(express.urlencoded({ extended: true }));
+
 
 // routes
 app.get('/', (req, res) => {
